@@ -40,6 +40,7 @@ def print_version():
 openai.api_key = os.environ['OPENAI_API_KEY']
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
+    print(request)
     message = {}
     if request.method == 'POST':
         message = request.get_json()
@@ -55,7 +56,8 @@ def chat():
             message
         ]
     )
-
+    
+    print(completion)
     res = completion.choices[0].message.content
     return res
 
