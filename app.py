@@ -38,9 +38,14 @@ def print_version():
 
 
 openai.api_key = os.environ['OPENAI_API_KEY']
-@app.route('/chat', methods=['POST'])
+@app.route('/chat', methods=['GET', 'POST'])
 def chat():
-    message = request.get_json()
+    message = {}
+    if request.method == 'POST':
+        message = request.get_json()
+    else:
+        message = request.args
+
     message['role'] = 'user'
 
     completion = openai.ChatCompletion.create(
