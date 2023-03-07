@@ -59,6 +59,8 @@ def chat():
     
     print(completion)
     res = completion.choices[0].message.content
+    print(message)
+    print(res)
     return res
 
 
