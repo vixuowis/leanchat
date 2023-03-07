@@ -44,7 +44,8 @@ def chat():
     if request.method == 'POST':
         message = request.get_json()
     else:
-        message = request.args
+        content = request.args.get('content', '')
+        message['content'] = content
 
     message['role'] = 'user'
 
